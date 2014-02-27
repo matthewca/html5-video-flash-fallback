@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>HTML5 Video with Flash Fallback Example</title>
+		<style>
+			body, html
+			{
+				background-color: black;
+				margin: 0;
+				padding: 0;
+			}
+			#video
+			{
+				margin: 0 auto;
+				width: 854px;
+			}
+		</style>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+			//this just vertically centers the video on the page
+			$(document).ready(function(e) { 
+				if ($('#video').height() < $(window).height())
+					$('#video').css('margin-top',($(window).height()-$('#video').height())/2 + 'px');
+			});
+		</script>
+	</head>
+	
+	<body>
+		<div id="video">
+			<video width="854" height="480" poster="splash-screen.jpg" controls >
+				<source src="media/big_buck_bunny.mp4" type="video/mp4">
+				<source src="media/big_buck_bunny.webmsd.webm" type="video/webm">
+				<source src="media/big_buck_bunny.oggtheora.ogv" type="video/ogg">
+				<script src="flowplayer/flowplayer-3.2.12.min.js"></script>
+				<a id="flash-player" style="width:854px;height:480px;display:block"></a> 
+				<script> 
+					flowplayer("flash-player", "flowplayer/flowplayer-3.2.16.swf", {
+						clip: {
+							url: 'media/big_buck_bunny.mp4',
+							autoPlay: false, 
+							autoBuffering: true,
+							scaling: 'fit'
+						},
+						canvas: {
+							backgroundColor: "#000000",
+							backgroundGradient: "none"
+						}
+					}); 
+				</script> 
+			</video>
+		</div>
+	</body>
+</html>
